@@ -1,0 +1,175 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: darkorchid;
+  font-family: 'Raleway Dots', cursive;
+  margin-bottom: 5rem;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+.start-btn {
+  width: 300px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.start-btn:hover {
+  cursor: pointer;
+}
+
+.start-btn:active {
+  box-shadow: none;
+  transform: translate(0px, 5px);
+}
+
+.orange {
+  background-color: #e67e22;
+  border: 1px solid #d35400;
+  box-shadow: 0px 5px 0px 0px #d35400;
+}
+
+.game-stats {
+  color: white;
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game-stats ul li {
+  display: inline-block;
+}
+
+.game-stats ul.points {
+  margin: 0;
+  padding: 0;
+}
+
+.game-stats li {
+  list-style: none;
+}
+
+.game-stats li span {
+  background-color: white;
+  color: darkorchid;
+  border-radius: 150px;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  font-size: 40px;
+}
+
+.game-stats li span.text {
+  display: block;
+  color: white;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0;
+  background: none;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.paw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.paw-container {
+  cursor: pointer;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  z-index: 1;
+  perspective: 1000;
+}
+
+.paw-container:hover {
+  transform: scale3d( 1, 1, 1.2);
+}
+
+.paw-container img {
+  max-width: 100%;
+  opacity: .7;
+}
+
+.paw-container img:hover {
+  opacity: 1;
+}
+
+.paw-card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.3s linear;
+  border: 1px solid rosybrown;
+}
+
+.paw-card:hover {
+  border: none;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.face.back {
+  display: block;
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  background-color: #000000;
+}
+
+.open-card {
+  transform: rotateY(180deg);
+}
+
+.close-card {
+  transform: rotateY(360deg);
+}
+
+@media only screen and (max-width: 800px) {
+  .paw-grid {
+    grid-template-columns: repeat(2, auto)
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .game-stats li span {
+    border-radius: 100px;
+    align-items: center;
+    box-sizing: border-box;
+    line-height: 85px;
+    padding: 0 1rem;
+    height: 50px;
+    font-size: 40px;
+  }
+  .game-stats li span.text {
+    display: none
+  }
+  h1 {
+    font-size: 2em;
+  }
+  .paw-container {
+    height: 75px;
+    width: 75px;
+  }
+}
