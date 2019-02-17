@@ -31,6 +31,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      matchclicks: 1,
+      matchclickpair: [],
       totalclicks: 0,
       correctpairs: 0,
       completed: false,
@@ -79,26 +81,45 @@ class App extends Component {
 
   }
 
+  matchPair = []
+
   fetchShuffledPaws = () => {
     const shuffledPaws = _.shuffle(this.state.cards)
     this.setState({ gamestarted: true, cards: shuffledPaws })
   }
 
   cardActions = (pawcard) => {
-    let realID = pawcard
+    let realId = pawcard
+    const targetPaw = this.state.cards.find(item => pawcard === item.id)
+
+    if (this.matchPair.length < 2) {
+      this.matchPair.push(targetPaw)
+      const isEqualValues = this.matchPair.every(item => item.pawcat === this.matchPair[0].pawcat)
+      console.log(isEqualValues)
+      console.log(this.matchPair)
+    }
+    else {
+      return
+    }
+
+
 
     const arr = this.state.cards.map(card => {
-      if (card.id === realID) {
+      if (card.id === realId) {
         card.isopen = !card.isopen
+
         return card
       } else {
         return card
       }
     })
 
+
     this.setState({
       cards: arr,
-      totalclicks: this.state.totalclicks + 1
+      totalclicks: this.state.totalclicks + 1,
+      matchclicks: this.state.matchclicks + 1,
+      matchclickpair: this.matchPair
     })
   }
 
@@ -114,18 +135,18 @@ class App extends Component {
         return (
           <div>
             <section className="game-stats">
-              <ul class="points">
+              <ul className="points">
                 <li>
                   <span>{this.state.totalclicks}</span>
-                  <span class="text">Pairs</span>
+                  <span className="text">Pairs</span>
                 </li>
                 <li>
                   <span>{this.state.totalclicks}</span>
-                  <span class="text">Total Clicks</span>
+                  <span className="text">Total Clicks</span>
                 </li>
                 <li>
                   <span>{this.state.totalclicks}</span>
-                  <span class="text">Turn Click Lefts</span>
+                  <span className="text">Turn Click Lefts</span>
                 </li>
               </ul>
             </section>
